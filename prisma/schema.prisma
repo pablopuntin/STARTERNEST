@@ -112,23 +112,20 @@ model UserRole {
 }
 
 model RefreshToken {
-  @@map("refresh_tokens")
+
+  // Identidad
   id String @id @default(cuid())
 
-  tokenHash String @unique
-
-  userId String
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  // Datos
+  token String
   expiresAt DateTime
 
-  revokedAt DateTime?
+  // Relaciones
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // id del RefreshToken que reemplazó a éste
-  replacedByTokenId String?
-
+  // Auditoría
   createdAt DateTime @default(now())
 
-  @@index([userId])
+  @@map("refresh_tokens")
 }

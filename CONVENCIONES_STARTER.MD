@@ -200,3 +200,38 @@ Eso incluye:
 
 Entonces el usuario debe autenticarse nuevamente y recibe un JWT completamente actualizado.
 
+### Política de autenticación
+
+* Access Token
+* Duración: 1 hora
+* Contenido:
+* sub
+* name
+* lastName
+* (más adelante roles, cuando los implementemos)
+
+* Su única función es autorizar el acceso a la API.
+
+Refresh Token
+Duración: 7 días (me inclino por 7 antes que 5)
+Se almacena hasheado en la base de datos.
+Se utiliza únicamente para generar un nuevo Access Token.
+Nunca autoriza directamente una petición a la API.
+Logout
+
+Cuando el usuario hace logout:
+
+Se elimina el Refresh Token de la base de datos.
+El Access Token dejará de ser válido cuando expire (máximo 1 hora).
+Cambio de datos sensibles
+
+Cualquier modificación de:
+
+* contraseña,
+* email,
+* nombre,
+* apellido,
+* roles,
+* permisos,
+
+invalidará todos los Refresh Tokens del usuario, obligándolo a iniciar sesión nuevamente.
