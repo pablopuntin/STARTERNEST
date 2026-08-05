@@ -17,12 +17,7 @@ async function bootstrap() {
     }),
   );
 
-  // const config = new DocumentBuilder()
-  //   .setTitle('Backend Starter')
-  //   .setDescription('API del Backend Starter')
-  //   .setVersion('1.0.0')
-  //   .addBearerAuth()
-  //   .build();
+  
 
   const config = new DocumentBuilder()
   .setTitle('Backend Starter')
